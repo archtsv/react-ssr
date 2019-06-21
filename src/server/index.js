@@ -1,4 +1,5 @@
 import express from 'express';
+import proxy from 'express-http-proxy';
 import { matchRoutes } from 'react-router-config';
 import { render } from './utils';
 import { getStore } from '../store';
@@ -9,6 +10,11 @@ const port = 3000;
 
 // express服务器请求一个静态文件，就会去public文件目录中去找
 app.use(express.static('public'));
+app.use('/api', proxy('http://47.95.113.63', {
+  proxyReqPathResolver: function (req) {
+    return '/ssr/api' + req.url;
+  }
+}));
 
 app.get('*', (req, res) => {
   const store = getStore();
