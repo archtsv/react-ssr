@@ -16,8 +16,9 @@ export const getHeaderInfo = () => {
 
 export const login = () => {
   return (dispatch, getState, axiosInstance) => {
-    return axiosInstance.get('/api/login.json?secret=PP87ANTIPIRATE')
+    return axiosInstance.get('/api/login.json')
             .then(res => {
+              console.log(res)
               dispatch(changeLogin(res.data.data.login))
             });
   }

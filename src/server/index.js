@@ -17,7 +17,7 @@ app.use('/api', proxy('http://47.95.113.63', {
 }));
 
 app.get('*', (req, res) => {
-  const store = getStore();
+  const store = getStore(req);
   // 根据路由的路径往store里面添加数据
   const matchedRoutes = matchRoutes(routes, req.path);
 

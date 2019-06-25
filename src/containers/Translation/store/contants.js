@@ -1,0 +1,1 @@
+export const CHANGE_LSIT = 'translation/change_list';
