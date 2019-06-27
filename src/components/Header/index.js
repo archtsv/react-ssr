@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { actions } from './store';
 
 class Header extends Component {
+  componentWillMount() {
+    console.log(this.props.staticContext);
+  }
   render() {
     const { login, handleLogin, handleLogout } = this.props;
     return (

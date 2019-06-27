@@ -12,6 +12,21 @@ const serverConfig = {
     path: path.resolve(__dirname, 'build')
   },
   externals: [nodeExternales()], // 防止node_modules中的模块被打包
+  module: {
+    rules: [{
+      test: /.css?$/,
+      use: ['isomorphic-style-loader', {
+        loader: 'css-loader',
+        options: {
+          importLoaders: 1,
+          modules: {
+            mode: 'local',
+            localIdentName: '[name]_[local]_[hash:base64:5]'
+          }
+        }
+      }]
+    }]
+  }
 };
 
 module.exports = merge(baseConfig, serverConfig);

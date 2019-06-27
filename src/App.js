@@ -7,7 +7,7 @@ import Header from './components/Header/';
 const App = (props) => {
   return (
     <div>
-      <Header />
+      <Header staticContext={props.staticContext} />
       { renderRoutes(props.route.routes) }
     </div>
   )
