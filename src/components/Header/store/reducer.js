@@ -1,7 +1,7 @@
 import * as constants from './constants';
 
 const defaultState = {
-  login: false,
+  login: true,
 }
 
 export default (state = defaultState, action) => {
@@ -9,7 +9,7 @@ export default (state = defaultState, action) => {
     case constants.CHANGE_LOGIN:
       return {
         ...state,
-        login: action.login
+        login: action.value
       }
     default:
       return state;

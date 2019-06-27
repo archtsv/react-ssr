@@ -1,6 +1,7 @@
 import Home from './containers/Home';
 import Translation from './containers/Translation';
 import App from './App';
+import NotFound from './containers/NotFound';
 
 export default [{
   path: '/',
@@ -20,6 +21,8 @@ export default [{
       exact: true,
       loadData: Translation.loadData,
       key: 'translation',
+    }, {
+      component: NotFound,
     }
   ]
 }]
