@@ -12,11 +12,15 @@ export const render = (store, routes, req, context) => {
         </StaticRouter>
       </Provider>
     );
+
+    const cssStr = context.css.length ? context.css.join('\n') : '';
+
     // window.context是数据的注水
     return (`
     <html>
       <head>
         <title>ssr</title>
+        <style>${cssStr}</style>
       </head>
       <body>
         <div id="root">${content}</div>
