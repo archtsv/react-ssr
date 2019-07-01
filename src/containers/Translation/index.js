@@ -1,7 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
 import { Redirect } from 'react-router-dom';
 import { getTranslationList } from './store/actions';
+import styles from './styles.css';
+import withStyle from '../../withStyle';
 
 class Translation extends Component {
 
@@ -14,9 +17,15 @@ class Translation extends Component {
   render() {
     return this.props.login ?
       (
-        <div>
-          {this.getList()}
-        </div>
+        <Fragment>
+          <Helmet>
+            <title>这是ssr翻译页面 - 丰富多彩</title>
+            <meta name="description" content="丰富多彩的翻译页面" />
+          </Helmet>
+          <div className={styles.test}>
+            {this.getList()}
+          </div>
+        </Fragment>
       ) : <Redirect to='/' />;
   }
 
@@ -41,7 +50,12 @@ const mapDispatchToProps = dispatch => ({
   getTranslationList() {
     dispatch(getTranslationList());
   }
-})
+});
 
+const ExportTranslation = connect(mapStateToProps, mapDispatchToProps)(withStyle(Translation, styles));
 
-export default connect(mapStateToProps, mapDispatchToProps)(Translation);
+ExportTranslation.loadData = (store) => {
+  return store.dispatch(getTranslationList());
+}
+
+export default ExportTranslation;
